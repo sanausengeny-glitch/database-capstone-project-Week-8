@@ -1,0 +1,12 @@
+CREATE INDEX IF NOT EXISTS idx_users_org_email ON users (organization_id, email);
+CREATE INDEX IF NOT EXISTS idx_users_role_active ON users (role, is_active);
+CREATE INDEX IF NOT EXISTS idx_courses_org_instructor ON courses (organization_id, instructor_id);
+CREATE INDEX IF NOT EXISTS idx_courses_status ON courses (status);
+CREATE INDEX IF NOT EXISTS idx_modules_course_order ON course_modules (course_id, sort_order);
+CREATE INDEX IF NOT EXISTS idx_enrollments_student_status ON enrollments (student_id, enrollment_status);
+CREATE INDEX IF NOT EXISTS idx_enrollments_course_status ON enrollments (course_id, enrollment_status, enrolled_at);
+CREATE INDEX IF NOT EXISTS idx_assessments_course_due ON assessments (course_id, due_at);
+CREATE INDEX IF NOT EXISTS idx_submissions_assessment_student ON submissions (assessment_id, student_id);
+CREATE INDEX IF NOT EXISTS idx_submissions_student_score ON submissions (student_id, score) WHERE score IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_payments_student_status ON payments (student_id, payment_status);
+CREATE INDEX IF NOT EXISTS idx_audit_table_record ON audit_log (table_name, record_id, changed_at DESC);
